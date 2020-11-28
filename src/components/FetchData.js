@@ -8,34 +8,29 @@ import { deleteItem, getItems, addItems} from "./state/actionCreators";
 import { addItem } from "./state/cart/cart.actions"
 
 
-const FetchData = ({ item, addItem }) => {
-  const { description, price, category, title, image } = item;
-
-
+const FetchData = props => {
 const { id } = useParams();
+const [ item ] =useState([])
 
-// const addItem = e => {
-//   history.push("/Cart")
-// }  
-  
-        // const handleDelete = e => {
-        //   e.preventDefault();
-        //   console.log('delete item!', props.item.id)
-        //   props.deleteItem(props.item.id);
-        // };
+const addItem = (e, item) => {
+  e.preventDefault()
+  addItems(item)
+}
+
+
 
 
         return (
             // <Link to={`/Cart/${props.item}`}>
               <div className="item-card-container">
               <StyledItems className="styled-card">
-              <h4>{title}</h4>
-              <img src ={image} alt= '' />
-              <h4>{description}</h4>
-              <h4>${price}</h4>
-              <h4>{category}</h4>
+              <h4>{props.item.title}</h4>
+              <img src ={props.item.image} alt= '' />
+              <h4>{props.item.description}</h4>
+              <h4>${props.item.price}</h4>
+              <h4>{props.item.category}</h4>
 
-              <button onClick={() => addItem(item)} inverted>
+              <button onClick={(e, item) => addItem(e, item)}>
 				        Add to cart
 			        </button>
         </StyledItems>

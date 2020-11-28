@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from 'react';
 import styled from "styled-components";
-import { selectCartItems } from '../components/state/cart/cart.selectors';
+import data from '../data';
 
 
 // Components
@@ -31,7 +31,7 @@ const Shopping = styled.div`
 			width: 100px;
 		}
 
-		h1,
+		h1,h4,
 		p {
 			padding: 2px 0;
 			margin: 0 20px;
@@ -86,8 +86,9 @@ const Shopping = styled.div`
 `;
 
 const Cart = props => {
+	const [ items ] =useState([])
 	const getCartTotal = () => {
-		return props.items.reduce((acc, value) => {
+		return items.reduce((acc, value) => {
 			return acc + value.price;
 		}, 0).toFixed(2);
 	};
@@ -96,7 +97,7 @@ const Cart = props => {
 		<Shopping>
 		<div className="shopping-cart">
         {items.map(item => (
-			<Item key={item.id} item ={item} />
+			<Item key={item.id} item={item} />
 			))}
 
 			<div className="shopping-cart__checkout">

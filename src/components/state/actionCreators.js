@@ -16,7 +16,7 @@ export const getItems = () => dispatch => {
 export const addItems = additems => dispatch => {
     dispatch({ type: types.ADD_ITEMS_START })
     axiosWithAuth()
-    .add("/products/addproducts", additems)
+    .put("/carts", additems)
     .then(response => {
         console.log(response.data);
         
@@ -34,7 +34,7 @@ export const addItems = additems => dispatch => {
     });
     };
           
-export const deleteItem = id =>  dispatch => {
+    export const deleteItem = id =>  dispatch => {
     dispatch({ type: types.DELETE_ITEM_START})
     const token = localStorage.getItem("token");
         axiosWithAuth()
