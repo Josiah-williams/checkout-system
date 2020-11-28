@@ -5,14 +5,13 @@ import styled from "styled-components";
 import { axiosWithAuth } from "./auth/axiosWithAuth";
 import { useHistory, useParams } from "react-router-dom";
 import { deleteItem, getItems, addItems} from "./state/actionCreators";
-import { addItem } from "./state/cart/cart.actions"
 
 
 const FetchData = props => {
 const { id } = useParams();
 const [ item ] =useState([])
 
-const addItem = (e, item) => {
+const addItems = (e, item) => {
   e.preventDefault()
   addItems(item)
 }
@@ -30,7 +29,7 @@ const addItem = (e, item) => {
               <h4>${props.item.price}</h4>
               <h4>{props.item.category}</h4>
 
-              <button onClick={(e, item) => addItem(e, item)}>
+              <button onClick={(e, item) => addItems(e, item)}>
 				        Add to cart
 			        </button>
         </StyledItems>
@@ -40,7 +39,7 @@ const addItem = (e, item) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item))
+  addItem: item => dispatch(addItems(item))
 });
 
 export default connect(
@@ -48,44 +47,44 @@ export default connect(
   mapDispatchToProps
 )(FetchData);
 
-  const StyledItems = styled.div`
-  border-radius: 5px;
-	background: white;
-	transition: 0.2s ease-in-out;
-	width: 300px;
-  margin: 10px;
-  align-items: center;
-  text-align: center;
-  align-self: flex-start;
-  color: black;
+const StyledItems = styled.div`
+border-radius: 5px;
+background: white;
+transition: 0.2s ease-in-out;
+width: 300px;
+margin: 10px;
+align-items: center;
+text-align: center;
+align-self: flex-start;
+color: black;
 
-	&:hover {
-		box-shadow: 0px 5px 37px -22px rgba(0, 0, 0, 1);
-	}
+&:hover {
+box-shadow: 0px 5px 37px -22px rgba(0, 0, 0, 1);
+}
 
-	img {
-		object-fit: contain;
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
-    max-width: 100%;
-    max-height:200px
-	}
+img {
+object-fit: contain;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+max-width: 100%;
+max-height:200px
+}
 
-	button {
-		border-radius: 5px;
-		border: 1px solid lightcoral;
-		padding: 10px;
-		background: transparent;
-		transition: 0.15s ease-in-out;
-		margin: 10px 0;
-		color: lightcoral;
-		margin-left: 25px;
+button {
+border-radius: 5px;
+border: 1px solid lightcoral;
+padding: 10px;
+background: transparent;
+transition: 0.15s ease-in-out;
+margin: 10px 0;
+color: lightcoral;
+margin-left: 25px;
 
-		&:hover {
-			cursor: pointer;
-			background: lightcoral;
-			color: white;
-		}
-	}
+&:hover {
+  cursor: pointer;
+  background: lightcoral;
+  color: white;
+}
+}
 }
 `;

@@ -16,7 +16,7 @@ export const getItems = () => dispatch => {
 export const addItems = additems => dispatch => {
     dispatch({ type: types.ADD_ITEMS_START })
     axiosWithAuth()
-    .post("/carts", additems)
+    .post("/products", additems)
     .then(response => {
         console.log(response.data);
         
